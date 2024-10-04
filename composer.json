@@ -3,7 +3,8 @@
         "ext-pdo": "*",
         "vlucas/phpdotenv": "^5.3",
         "ramsey/uuid": "^4.7",
-        "fakerphp/faker": "^1.23"
+        "fakerphp/faker": "^1.23",
+        "shuchkin/simplexlsx": "^1.1"
     },
     "autoload": {
         "psr-4": {
