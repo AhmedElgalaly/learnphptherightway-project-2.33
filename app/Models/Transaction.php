@@ -15,6 +15,11 @@ class Transaction extends Model
 
     public function create(DateTime $dateOfTransaction, ?int $CheckNum, string $description, float $amount, ?string $ileId): void
     {
+        /*
+            $fileId was inteded for feature that prevents duplicate files from being uploaded by using Hashing
+            but was not implemented if you by chance saw this comment go ahead and implement it it will be cool
+            also use SHA-256 for hashing it will take varchar(64) in the database
+        */
         $query = 'INSERT INTO transactions (TransactionID, DateOfTransaction, CheckNum, Description, Amount, Negative, FileID)
             VALUES (:TransactionID, :DateOfTransaction, :CheckNum, :Description, :Amount, :Negative, :FileID)';
 
@@ -28,7 +33,7 @@ class Transaction extends Model
         $newTransactionStmt->bindValue('Description', $description, PDO::PARAM_STR);
         $newTransactionStmt->bindValue('Amount', abs($amount), PDO::PARAM_STR);
         $newTransactionStmt->bindValue('Negative', $amount < 0? TRUE : FALSE, PDO::PARAM_BOOL);
-        $newTransactionStmt->bindValue('FileID', $ileId, PDO::PARAM_STR);
+        $newTransactionStmt->bindValue('FileID', $ileId?? null, PDO::PARAM_STR);
 
         
         $newTransactionStmt->execute();
@@ -63,8 +68,4 @@ class Transaction extends Model
 
         return $newTransactionStmt->fetchColumn() * -1;
     }
-
-
-
-    
 }

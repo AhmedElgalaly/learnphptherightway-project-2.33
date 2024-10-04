@@ -44,9 +44,9 @@
     </style>
 <body>
     <form method="post" action="/upload" enctype="multipart/form-data">
-    <input name="file" type="file" id="files" accept=".csv, .xlsx,
+    <input name="files[]" type="file" id="files" accept=".csv, .xlsx,
             application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            required>
+            multiple required>
         <button type="submit">Upload</button>
     </form>
 </body>

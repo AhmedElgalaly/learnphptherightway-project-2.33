@@ -35,19 +35,34 @@
             </thead>
             <tbody>
                 <!-- TODO -->
+                <?php
+                    foreach ($transactions as $transaction) {
+                        echo "<tr>";
+                        echo "<td>{$transaction['DateOfTransaction']}</td>";
+                        echo "<td>{$transaction['CheckNum']}</td>";
+                        echo "<td>{$transaction['Description']}</td>";
+                        echo "<td style='color:" . ($transaction['Negative'] == 1 ? "red" : "green") . "'>$" . "{$transaction['Amount']}</td>";
+                        echo "</tr>";
+                    }?>
             </tbody>
             <tfoot>
                 <tr>
                     <th colspan="3">Total Income:</th>
-                    <td><!-- TODO --></td>
+                    <td style="color: green"><!-- TODO -->
+                    <?php echo '$'.$revenue; ?>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Total Expense:</th>
-                    <td><!-- TODO --></td>
+                    <td style="color:red"><!-- TODO -->
+                    <?php echo '$'.abs($expenses); ?>
+                    </td>
                 </tr>
                 <tr>
                     <th colspan="3">Net Total:</th>
-                    <td><!-- TODO --></td>
+                    <td <?php echo 'style=color:' . ($netTotal>=0? 'green':'red') ?> ><!-- TODO -->
+                    <?php echo '$'.$netTotal; ?>
+                    </td>
                 </tr>
             </tfoot>
         </table>
