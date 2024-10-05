@@ -16,7 +16,8 @@ class TransactionController
             'transactions' => $transaction->all(),
             'revenue' => $transaction->getRevenue(),
             'expenses' => $transaction->getExpenses(),
-            'netTotal' => $transaction->getRevenue() - $transaction->getExpenses()
+            // + sign was added beacuse the getExpenses method returns a negative value
+            'netTotal' => $transaction->getRevenue() + $transaction->getExpenses()
         ]);
     }
 }
